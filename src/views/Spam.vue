@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1>Spam</h1>
+            <video class="camera"></video>
+
+    <video src=""></video>
   </div>
 </template>
 
@@ -17,6 +20,10 @@ export default {
     // Filter,
     // Pictures,
     // SavedFiles
-  }
+  },
+   video() {
+    this.$store.dispatch("getMedia");
+  },
+  
 }
 </script>
