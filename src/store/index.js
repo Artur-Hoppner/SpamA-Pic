@@ -11,9 +11,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async getMedia() {
 
-    }
   },
 
   modules: {
