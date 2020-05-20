@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+
+// Vue.prototype.createObjectURL = window.createObjectURL;
+Vue.prototype.Caman = window.Caman;
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -22,3 +26,5 @@ function registerServiceWorker() {
 }
 
 registerServiceWorker()
+
+// / länka cdn med caman se video
