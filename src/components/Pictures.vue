@@ -2,8 +2,8 @@
 <template>
   <div >
         <button v-on:click="captureImage()" >pic</button>
-       
-       <img :src="this.pictures" id="photo" ref="photo"  class="taken-picture" />
+       <img :src="this.pictures" id="photo"  class="taken-picture" />
+      <!-- <canvas :src="this.pictures" id="photo"  class="taken-picture"></canvas> -->
 <PictureFilters />
 <DownloadImg />
 
@@ -18,8 +18,12 @@ import DownloadImg from '@/components/DownloadImg.vue'
 
 export default {
 
+
+
     data() {
     return {
+          vueCanvas: null,
+
         pictures: ''
     }
 },
@@ -35,7 +39,10 @@ export default {
         const captureImg = new ImageCapture(mediaTrack);
         const photo = await captureImg.takePhoto()
         this.pictures = URL.createObjectURL(photo);
-        }
+        },
+
+
+        
   },
 }
 
@@ -44,7 +51,9 @@ export default {
 <style lang="scss">
 
 .taken-picture {
-  width: 60vw;
+
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 

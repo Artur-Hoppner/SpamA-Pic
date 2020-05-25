@@ -1,8 +1,9 @@
 <template>
 <div>
 
-    <!-- <button @click="greyScale" >Greyscale</button>
-    <button @click="bright" >bright</button> -->
+      <button v-on:click="greyscale()" >greyscale</button>
+<!-- <input type="range" min="0" max="100" step="1" value="0" > -->
+      <button @click="bright" >bright</button>
 </div>
 </template>
 
@@ -10,23 +11,20 @@
 // import Caman from "Caman"
 
 export default {
-
-
 methods: {
-// bright() {
-// this.Caman("#photo", () => {
-//   brightness(49).render();
-// })
-// },
+  bright() {
+    this.Caman("#photo", function () {
+      this.brightness(40)
+      this.render();
+    })
+  },
 
-// greyScale() {
-
-//          this.$Caman("#photo", () => {
-//             this.greyscale().render();
-//             return
-//       });
-    
-//     }
+  greyscale() {
+    this.Caman("#photo", function () {
+        this.greyscale()
+        this.render();
+      })
+  },
 },
 
 }

@@ -2,7 +2,7 @@ self.addEventListener('install', event => {
     console.log('ServiceWorker installed at: ', new Date().toLocaleTimeString());
     event.waitUntil(
         caches.open('v1').then((cache) => {
-            return cache.addAll(['index.html'])
+            return cache.addAll(['index.html', 'offline.html', 'offline.css'])
         })
     );
     self.skipWaiting();

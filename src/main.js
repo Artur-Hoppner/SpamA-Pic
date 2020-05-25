@@ -2,9 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import Caman from "Caman"
 
-// Vue.prototype.createObjectURL = window.createObjectURL;
+
 Vue.prototype.Caman = window.Caman;
 
 Vue.config.productionTip = false

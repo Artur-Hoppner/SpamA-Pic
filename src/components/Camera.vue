@@ -49,6 +49,11 @@ body {
         .video {
      width: 50vw;
     }
-
     }
+
+    video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
 </style>
