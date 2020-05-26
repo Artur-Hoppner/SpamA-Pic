@@ -2,7 +2,11 @@
   <div class="camera">
     <div class="head-container" >
       <img src="../assets/unicorn-hearts.png" alt="unicorn-hearts" class="img-unicorn">
-      <h1>Spam A Pic</h1>
+      <div class="header-container">
+      <h1>Spam </h1>
+      <h1>A</h1>
+      <h1>Pic</h1>
+      </div>
     </div>
 <Camera />
 <Pictures />
@@ -33,10 +37,20 @@ export default {
 
 body {
   background-color: rgb(255, 185, 185);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
   }
-
+.header-container {
+display: flex;
+flex-direction: column;
+}
   .head-container {
     display: flex;
+  }
+  h1{
+    margin: 0 0 0 0;
   }
 
 .img-unicorn {

@@ -15,6 +15,7 @@ new Vue({
 }).$mount('#app')
 
 
+// register sw.js on mount
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -26,4 +27,13 @@ function registerServiceWorker() {
 
 registerServiceWorker()
 
-// / länka cdn med caman se video
+
+// Ask premission for notifications:
+const requestNotificationPermission = async () => {
+  console.log("requestNotificationPermission")
+    const permission = await window.Notification.requestPermission();
+    if(permission !== 'granted'){
+        throw new Error('Permission not granted for Notification');
+    }   
+}
+requestNotificationPermission()
