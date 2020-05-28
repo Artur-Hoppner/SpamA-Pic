@@ -1,9 +1,13 @@
 <template>
-  <div class="camera">
-    <div class="head-container" >
+  <div>
+    <section class="top-container">
       <img src="../assets/unicorn-hearts.png" alt="unicorn-hearts" class="img-unicorn">
-      <h1>Spam A Pic</h1>
+      <div class="title-container">
+      <h1>Spam </h1>
+      <h1>A</h1>
+      <h1>Pic</h1>
     </div>
+    </section>
 <Camera />
 <Pictures />
 
@@ -33,15 +37,25 @@ export default {
 
 body {
   background-color: rgb(255, 185, 185);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
   }
 
-  .head-container {
-    display: flex;
+.top-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+  h1{
+    margin: 0 0 0 0;
   }
 
 .img-unicorn {
-  width: 10vw;
-  height: 10vw;
+  width: 7%;
+  height: 7%;
 }
 
 

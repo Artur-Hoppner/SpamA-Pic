@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(unicorn-background.png);
+    background-repeat: no-repeat;
+    background-size: 50vw;
+    background-position: top;
+    background-color: rgb(255, 185, 185);
+    font-family: 'Poor Story', cursive;
+}
+
+h1 {
+    margin-top: 5vw;
+    display: flex;
+    color: rgb(253, 173, 69);
+    border-radius: 1rem;
+    border: solid 1vw rgb(7, 7, 7);
+    background-color: rgb(7, 7, 7);
+    opacity: 70%;
+}
+
+@media only screen and (max-width: 780px) { 
+    body {
+        background-size: 80vw;
+    }
+
+    h1 {
+    font-size: 26px;
+    }
+}
