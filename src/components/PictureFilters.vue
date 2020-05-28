@@ -6,77 +6,70 @@
       <button @click="reset" >reset</button>
 
       <label for="bright">Brightness</label>
-      <input type="range" min="0" max="100" value="0" step="5" v-on:input="bright"  class="slider">
+      <input type="range" min="0" max="100" value="0" step="5" v-on:change="bright"  class="slider">
 
       <label for="Noise">Make Some Noise</label>
       <input type="range" min="0" max="100" value="0" step="5" v-on:input="noise"  class="slider">
-
-
-
-
 
 </div>
 </template>
 
 <script>
-// import Caman from "Caman"
-
 export default {
 
-    /***** 1 Alternative Brightness *****/
+/***** 1 Alternative Brightness *****/
   /*Alternative
   data() {
     return {
       currentBrightness: 0,
-    }},
+    }
+  },
   */
 
-methods: {
-
-   bright(data) {
-      const inputValue = parseInt(data.target.value)
-      
-        this.Caman("#photo", function () {
+  methods: {
+      bright(data) {
+        const inputValue = parseInt(data.target.value)
+        
+          this.Caman("#myCanvas", function () {
             this.revert();
             this.brightness(inputValue)
             this.render();
-
           })
-    },
+      },
 
-    noise(data) {
-      const inputValue = parseInt(data.target.value)
-      
-        this.Caman("#photo", function () {
+      noise(data) {
+        const inputValue = parseInt(data.target.value)
+
+          this.Caman("#myCanvas", function () {
             this.revert();
             this.hue(inputValue)
             this.render();
-
           })
+      },
+
+      greyscale() {
+        this.Caman("#myCanvas", function () {
+          this.greyscale()
+          this.render();
+        })
+      },
+
+      kawaii() {
+        this.Caman("#myCanvas", function () {
+          this.love()
+          this.render();
+        })
+      },
+
+    reset() {
+      this.Caman("#myCanvas", function () {
+          this.revert();
+      })
     },
 
-  greyscale() {
-    this.Caman("#photo", function () {
-        this.greyscale()
-        this.render();
-      })
   },
 
-    kawaii() {
-    this.Caman("#photo", function () {
-        this.love()
-        this.render();
-      })
-  },
-
-  reset() {
-    this.Caman("#photo", function () {
-        this.revert();
-      })
-  },
-},
-
-    /***** 1 Alternative Brightness *****/
+/***** 1 Alternative Brightness *****/
   /*  bright(data) {
       const inputValue = parseInt(data.target.value)
       const currentBrightness = this.currentBrightness

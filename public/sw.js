@@ -45,9 +45,6 @@ async function updateCache(request) {
 
 
 
-
-
-
 // Push notification:
 
 const urlB64ToUint8Array = base64String => {
@@ -59,7 +56,7 @@ const urlB64ToUint8Array = base64String => {
       outputArray[i] = rawData.charCodeAt(i)
     }
     return outputArray
-  }
+  };
   
   
   
@@ -94,7 +91,16 @@ const urlB64ToUint8Array = base64String => {
     self.addEventListener('push', function(event) {
       if (event.data) {
         console.log('Push event!!', event.data.text())
+        activatePushNotification(event.data.text());
       } else {
         console.log('Push event but no data')
       }
     })
+
+
+    const activatePushNotification = (event) => {
+        self.registration.showNotification('Remember RainbowRandy', {
+            body: event,
+            icon: 'image/unicorn.jpg'
+        })
+    }
