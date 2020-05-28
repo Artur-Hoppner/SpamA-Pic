@@ -1,47 +1,72 @@
 <template>
   <div >
-    <button v-on:click="captureImage()" class="button-picture" >Take Picture</button>
+
+    <button v-on:click="captureImage" class="button-picture" >Take Picture</button>
+    <PictureFilters />
     <canvas ref="myCanvas" id="myCanvas" class="taken-picture" ></canvas> 
     <a href="#" ref="download"  class="btn" @click="downloadCanvas" download="CutiePie">Download Image</a>
-    <PictureFilters />
-    <DownloadImg />
 
+    <!-- Work in progress! -->
+    <!-- <div id="div1"> </div> -->
+    <!-- <button @click="testCreate" >testCreate</button> -->
+    <!-- <button @click="removeIt" >removeIt</button> --> 
+  
   </div>
 </template>
 
 <script>
 
 import PictureFilters from '@/components/PictureFilters.vue'
-import DownloadImg from '@/components/DownloadImg.vue'
 
 export default {
 
   components: {
     PictureFilters,
-    DownloadImg
   },
 
   methods: {
+   
     async captureImage() {
-      console.log("activate")
+      console.log("mfkldmsklfj")
         const mediaTrack = this.$store.state.videoStreem.getVideoTracks()[0];
         const captureImg = new ImageCapture(mediaTrack);
         const photo = await captureImg.takePhoto()
         const data = URL.createObjectURL(photo);
-        this.$refs.myCanvas
         this.Caman('#myCanvas', data, function() {
           this.render();
         });
-
-        },
-        
+    },
 
     downloadCanvas() {
+      // If you dont want to download offline then add if(window.navigator.onLine){...code...}
+      // or if(!window.navigator.onLine) {add style: displaye: none;}
       const canvas = this.$refs.myCanvas
       const imgUrl = canvas.toDataURL('image/png');
       this.$refs.download.href = imgUrl
-}
+    },
+    
+
+    // Work in progress: This makes it possible to create element and delete it. Its now possible to remove picture before taking another.
+      // removeIt() {
+      //   console.log(this.$refs.myCanvas, "test")
+      //   // this.$refs.myCanvas.remove()
+      //   document.getElementById("myCanvas").remove()
+      // },
+
+      //   testCreate() {
+      //     let para = document.createElement("canvas");
+      //     para.id = "myCanvas"
+      //     // para.ref = "myCanvas"
+      //     // let node = document.createTextNode("This is new.");
+          
+
+      //     // para.appendChild(node);
+      //     var element = document.getElementById("div1");
+      //     element.appendChild(para)
+      //   }
+      
   },
+
 }
 
 </script>
@@ -66,31 +91,9 @@ export default {
     -moz-appearance: none;
   }
 
-// LÖSNING PÅ  ta ny bild
 
-// if (document.querySelector('canvas') !== null) {
-//     document.querySelector('#photo').removeAttribute('data-caman-id');
-//     const switch_img = imgUrl
-//     renderCanvas('#photo', switch_img);
-//   }
+  
 
-// function renderCanvas(DOMid, src) {
-//   Caman(DOMid, src, function () {
-//     this.render();
-//     //Change the download-target to canvas src
-//     saveCanvas();
-//   })
-// }
-
-
-// Ladda ner bild
-// function saveCanvas() {
-//   document.querySelector('#download').href = document.querySelector('#photo').toDataURL(); //convert canvas image with multiple layers to base64
-//   document.querySelector('#download').download = 'my-instablam-picture.jpeg'; // Mention the file name and format to be downloaded
-// }
-
-// För att ladda ner:
-// url kan man göra om till a tagg och ladda ner. Render caman this.save. Kan ladda hem genom caman
 </style>
 
 

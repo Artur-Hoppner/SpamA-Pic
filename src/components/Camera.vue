@@ -2,6 +2,7 @@
 
     <div id="camera">
         <video :srcObject.prop.camel="this.$store.state.videoStreem" playsinline autoplay class="video"></video>
+        
     </div>
 
 </template>

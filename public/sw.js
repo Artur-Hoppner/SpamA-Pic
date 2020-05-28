@@ -58,8 +58,21 @@ const urlB64ToUint8Array = base64String => {
     return outputArray
   };
   
-  
-  
+  /*  // ****** Add function to subscribe to unsubscribe: ******
+
+PushSubscription.unsubscribe().then(function(Boolean) { ... }); //Syntax
+
+  navigator.serviceWorker.ready.then(function(reg) {
+    reg.pushManager.getSubscription().then(function(subscription) {
+      subscription.unsubscribe().then(function(successful) {
+        // You've successfully unsubscribed
+      }).catch(function(e) {
+        // Unsubscription failed
+      })
+    })        
+  });
+
+*/
   const saveSubscription = async subscription => {
     const SERVER_URL = "http://localhost:4000/save-subscription";
     const response = await fetch(SERVER_URL, {
