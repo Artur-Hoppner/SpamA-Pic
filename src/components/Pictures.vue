@@ -3,9 +3,10 @@
 
     <button v-on:click="captureImage" class="button-picture" >Take Picture</button>
     <PictureFilters />
-    <canvas ref="myCanvas" id="myCanvas" class="taken-picture" ></canvas> 
-    <a href="#" ref="download"  class="btn" @click="downloadCanvas" download="CutiePie">Download Image</a>
-
+    <div class="picture-download">
+      <canvas ref="myCanvas" id="myCanvas" class="taken-picture" ></canvas> 
+      <a href="#" ref="download"  class="download-link" @click="downloadCanvas" download="CutiePie">Download Image</a>
+    </div>
     <!-- Work in progress! -->
     <!-- <div id="div1"> </div> -->
     <!-- <button @click="testCreate" >testCreate</button> -->
@@ -74,24 +75,40 @@ export default {
 <style lang="scss">
 
   .taken-picture {
-    // width: 50% !important;
-    // height: 50% !important;
+    width: 50% !important;
+    height: 50% !important;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
 
-  button {
-    border: none;
-    border-radius: 0.3rem;
-    background-color: rgb(241, 126, 126) ;
-    background-size: 42px;
-    box-shadow: 1px 1px 1px 1px rgba(255, 140, 140, 0.534);
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  .picture-download {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
+.download-link {
+      margin: 10px;
+      width: 24vw;
+      height: 13vw;
+      font-size: 5vw;
+      font-weight: 600;
+      text-decoration: none;
+      background-color: #ee6f7a;
+      color: rgb(63, 30, 30);
+      border: .125rem solid rgb(51, 31, 31);
+      border-radius: .5rem;
+            &:hover {  
+            background: rgb(180, 103, 103);
+            color: #ddd;
 
+          }
+            &:active {
+            background: rgb(25, 25, 25);
+            color: #ddd;
+            }
+}
   
 
 </style>

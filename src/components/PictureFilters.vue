@@ -1,17 +1,18 @@
 <template>
-<div>
-
+  <div>
+    <div class="button-container">
       <button v-on:click="greyscale" >greyscale</button>
       <button v-on:click="kawaii" >kawaii</button>
       <button @click="reset" >reset</button>
-
+    </div>
+    <div class="range-container">
       <label for="bright">Brightness</label>
       <input type="range" min="0" max="100" value="0" step="5" v-on:change="bright"  class="slider">
 
       <label for="Noise">Make Some Noise</label>
       <input type="range" min="0" max="100" value="0" step="5" v-on:input="noise"  class="slider">
-
-</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,6 +28,7 @@ export default {
   */
 
   methods: {
+    
       bright(data) {
         const inputValue = parseInt(data.target.value)
         
@@ -95,8 +97,8 @@ export default {
 <style lang='scss'>
 .slider {
   -webkit-appearance: none;
-  width: 15vw;
-  height: 25px;
+  width: 23vw;
+  height: 23px;
   background: #575757;
   border: solid 1px rgb(182, 87, 87);
   outline: none;
