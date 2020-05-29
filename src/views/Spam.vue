@@ -6,6 +6,7 @@
       <h1>Spam </h1>
       <h1>A</h1>
       <h1>Pic</h1>
+      <button v-on:click="subscribeing">subscribe</button>
     </div>
     </section>
 <Camera />
@@ -29,7 +30,13 @@ export default {
     Pictures,
 
   },
-  
+  methods: {
+      subscribeing() {
+        this.$store.dispatch("requestNotificationPermission")
+      }
+
+
+  }
 }
 </script>
 

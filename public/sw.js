@@ -43,8 +43,6 @@ async function updateCache(request) {
 }
 
 
-
-
 // Push notification:
 
 const urlB64ToUint8Array = base64String => {
@@ -58,23 +56,10 @@ const urlB64ToUint8Array = base64String => {
     return outputArray
   };
   
-  /*  // ****** Add function to subscribe to unsubscribe: ******
-
-PushSubscription.unsubscribe().then(function(Boolean) { ... }); //Syntax
-
-  navigator.serviceWorker.ready.then(function(reg) {
-    reg.pushManager.getSubscription().then(function(subscription) {
-      subscription.unsubscribe().then(function(successful) {
-        // You've successfully unsubscribed
-      }).catch(function(e) {
-        // Unsubscription failed
-      })
-    })        
-  });
-
-*/
+  
   const saveSubscription = async subscription => {
     const SERVER_URL = "http://localhost:4000/save-subscription";
+
     const response = await fetch(SERVER_URL, {
       method: "post",
       headers: {
@@ -85,21 +70,35 @@ PushSubscription.unsubscribe().then(function(Boolean) { ... }); //Syntax
     return response.json();
   };
   
-  
-    self.addEventListener('activate', async () => {
-      try {
-        const applicationServerKey = urlB64ToUint8Array(
-          'BP3iMEWhbmXLmExSDcqqpO9YtI7FyeY1f0BD2rgJsbofYeK2-sg7qkaxXtHqBuFPYWfqMjcIBYhyYSOdkSWAPgc'
-        )
-        const options = { applicationServerKey, userVisibleOnly: true }
-        const subscription = await self.registration.pushManager.subscribe(options)
-        const response = await saveSubscription(subscription);
-        console.log(response);
-      } catch (err) {
-        console.log('Error', err)
+
+     async function subscribeMe () {
+      
+      const applicationServerKey = urlB64ToUint8Array(
+        'BP3iMEWhbmXLmExSDcqqpO9YtI7FyeY1f0BD2rgJsbofYeK2-sg7qkaxXtHqBuFPYWfqMjcIBYhyYSOdkSWAPgc'
+      )
+
+      // Check if there is a subscription
+      const options = { applicationServerKey, userVisibleOnly: true }
+      const subscription = await registration.pushManager.getSubscription(options)
+      if (subscription ) {
+        console.log("unsubscribe")
+        return subscription.unsubscribe()
+
+      } else {
+          try {
+          const options = { applicationServerKey, userVisibleOnly: true }
+          const subscription = await registration.pushManager.subscribe(options)
+            console.log(subscription, "subscribe")
+          const response = await saveSubscription(subscription); // pass in subscription and starts the function that pushes it to backend
+            console.log(response);
+
+          } catch (err) {
+            console.log('Error', err)
+            }
       }
-    })
-  
+    }
+
+  subscribeMe ()
   
     self.addEventListener('push', function(event) {
       if (event.data) {
@@ -112,7 +111,7 @@ PushSubscription.unsubscribe().then(function(Boolean) { ... }); //Syntax
 
 
     const activatePushNotification = (event) => {
-        self.registration.showNotification('Remember RainbowRandy', {
+      registration.showNotification('Remember RainbowRandy', {
             body: event,
             icon: 'image/unicorn.jpg'
         })

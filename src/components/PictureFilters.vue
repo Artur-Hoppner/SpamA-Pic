@@ -27,6 +27,7 @@ export default {
   */
 
   methods: {
+    
       bright(data) {
         const inputValue = parseInt(data.target.value)
         
